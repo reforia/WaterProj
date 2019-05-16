@@ -15,6 +15,8 @@ ACoreWater::ACoreWater()
 	// Initialize Water Volume
 	WaterVolume = CreateDefaultSubobject<UBoxComponent>(TEXT("WaterVolume"));
 	RootComponent = WaterVolume;
+
+	
 }
 
 // Called when the game starts or when spawned
@@ -36,7 +38,8 @@ void ACoreWater::InitializeWater() {
 	if (bWaterPlane)
 	{
 		// CreateWaterPlane
-		WaterMesh = CreateWaterPlane();
+		//CreateWaterPlane();
+		UE_LOG(LogTemp, Warning, TEXT("1"));
 	}
 	else
 	{
@@ -46,7 +49,8 @@ void ACoreWater::InitializeWater() {
 
 
 
-UStaticMeshComponent* ACoreWater::CreateWaterPlane() 
-{
-	return CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WaterPlaneMesh"));
-}
+//void ACoreWater::CreateWaterPlane() 
+//{
+//	UStaticMeshComponent* WaterComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WaterPlaneMesh"));
+//	//WaterComponent->SetStaticMesh(WaterMesh);
+//}

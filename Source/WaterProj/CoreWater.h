@@ -28,7 +28,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	// Return Box Component
-	FORCEINLINE UBoxComponent* GetWaterVolume() { return WaterVolume; }
+	FORCEINLINE UBoxComponent* GetWaterVolume() const { return WaterVolume; }
 
 	// Initialize Water Actor
 	UFUNCTION(BlueprintCallable, Category = "Water")
@@ -37,21 +37,24 @@ public:
 // PROPERTY
 private:
 	// Create water plane
-	UFUNCTION()
-	UStaticMeshComponent* CreateWaterPlane();
-
-protected:
+	//UFUNCTION()
+	//void CreateWaterPlane();
+	
 	// Box component to determine how big is the water
-	UPROPERTY(VisibleAnyWhere, BlueprintReadWrite, Category = "Water")
+	UPROPERTY(VisibleAnyWhere, BlueprintReadOnly, Category = "Water", meta = (AllowPrivateAccess = "True"))
 	UBoxComponent* WaterVolume;
 
-	// WaterMesh 
-	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Water")
-	UStaticMeshComponent* WaterMesh;
+protected:
+
+
+
 
 public:
 	// Generate water if bWaterPlane is true
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Water")
 	bool bWaterPlane;
 
+	// WaterMesh 
+	UPROPERTY(EditAnyWhere, BlueprintReadWrite, Category = "Water")
+	TSubclassOf<class UStaticMesh> WaterMesh;
 };
